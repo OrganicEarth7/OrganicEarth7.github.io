@@ -1,2 +1,243 @@
-# OrganicEarth7.github.io
-Hate fueled.
+<html><head><style>
+  /* --- FONT DEFINITIONS --- */
+  
+  /* 1. The one we started with */
+  @font-face {
+    font-family: "Beech";
+    src: url("raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Irresponsible Direction.ttf") format("truetype");
+  }
+
+  /* 2. Plastic Machine */
+  @font-face {
+    font-family: "PlasticMachine";
+    src: url("http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Baron%20Kuffner.otf") format("opentype");
+  }
+
+  /* 3. Gonbuto Strike */
+  @font-face {
+    font-family: "GonbutoStrike";
+    src: url("https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Wrong time%2C right place.ttf") format("truetype");
+  }
+
+  /* 4. Lava Letter */
+  @font-face {
+    font-family: "LavaLetter";
+    src: url("http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/MISPROJE.TTF") format("truetype");
+  }
+
+  body {
+    font-family: sans-serif;
+    overflow: hidden;
+    background-color: black;
+    margin: 0;
+  }
+
+  .container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  /* Background Image Animation */
+  img.bg-anim {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+
+  h1 {
+    position: absolute;
+    /* Default font, will be overridden by JS */
+    font-family: "Beech"; 
+    font-size: 50px;
+    white-space: nowrap;
+    transform-origin: center bottom; 
+    
+    /* GRADIENT TEXT SETUP */
+    background: linear-gradient(to top, #500000 10%, #ff0000 50%, #ff99cc 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /* HARD OUTLINE */
+    filter: 
+        drop-shadow(2px 0px 0px black) 
+        drop-shadow(-2px 0px 0px black)
+        drop-shadow(0px 2px 0px black) 
+        drop-shadow(0px -2px 0px black);
+  }
+
+  h1 span {
+  display: inline-block;
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.top {
+  position: absolute;
+  top: 45%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bottom {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+</style>
+
+</head><body><audio id="vid" autoplay="" loop="" style="display:none;" src="http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3">
+  <source src="http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+  <img class="bg-anim" src="https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/doom24.png">
+
+  <h1 class="top anim-enter" id="top" style="font-family: PlasticMachine;"><span style="animation-delay:0s">Y</span><span style="animation-delay:0.1s">O</span><span style="animation-delay:0.2s">U</span><span style="animation-delay:0.30000000000000004s">R</span><span style="animation-delay:0.4s">&nbsp;</span><span style="animation-delay:0.5s">E</span><span style="animation-delay:0.6000000000000001s">N</span><span style="animation-delay:0.7000000000000001s">D</span><span style="animation-delay:0.8s">&nbsp;</span><span style="animation-delay:0.9s">I</span><span style="animation-delay:1s">S</span><span style="animation-delay:1.1s">&nbsp;</span><span style="animation-delay:1.2000000000000002s">N</span><span style="animation-delay:1.3s">E</span><span style="animation-delay:1.4000000000000001s">A</span><span style="animation-delay:1.5s">R</span></h1>
+  <h1 class="bottom anim-enter" id="bottom" style="font-family: PlasticMachine;"><span style="animation-delay:0s">W</span><span style="animation-delay:0.1s">E</span><span style="animation-delay:0.2s">'</span><span style="animation-delay:0.30000000000000004s">R</span><span style="animation-delay:0.4s">E</span><span style="animation-delay:0.5s">&nbsp;</span><span style="animation-delay:0.6000000000000001s">C</span><span style="animation-delay:0.7000000000000001s">O</span><span style="animation-delay:0.8s">M</span><span style="animation-delay:0.9s">I</span><span style="animation-delay:1s">N</span><span style="animation-delay:1.1s">G</span><span style="animation-delay:1.2000000000000002s">&nbsp;</span><span style="animation-delay:1.3s">F</span><span style="animation-delay:1.4000000000000001s">O</span><span style="animation-delay:1.5s">R</span><span style="animation-delay:1.6s">&nbsp;</span><span style="animation-delay:1.7000000000000002s">Y</span><span style="animation-delay:1.8s">O</span><span style="animation-delay:1.9000000000000001s">U</span></h1>
+</div>
+
+<script>
+  /* 
+     --- INSTRUCTIONS FOR ADDING TEXT ---
+     Add your text strings to the 'combinedTexts' array below.
+     Use a hyphen "-" to separate the top line from the bottom line.
+     
+     Format: "TOP LINE TEXT - BOTTOM LINE TEXT",
+     
+     Example: "HELLO WORLD - THIS IS A TEST",
+  */
+  
+  var combinedTexts = [
+    "THIS CARCASS IS MY ARENA. - FACE ME OR DIE.",
+    "AT LORDS CONVERGING - IN THEIR PLACE",
+    "WE HAVE WAITED FOR THIS MOMENT. - WE KNOW YOUR FATE",
+    "THERE IS NO ESCAPE. - THIS IS THE END FOR YOU.",
+    "INFECTED ROT PLAGUES YOUR LAND. - THIS IS THE END FOR YOU.",
+    "ANGRY - MOON",
+    "THE GROX WERE BABIES - SO IS THE BUG",
+    "YOUR BLOOD WILL PAINT - THESE WALLS SCARLET",
+    "WE HAVE ALREADY WON - YOU JUST DONT KNOW IT YET",
+    "CLOSE YOUR EYES - IT WILL BE OVER SOON",
+    "THEY ARE COMING FOR YOU - AND THEY ARE HUNGRY",
+    "RESISTANCE IS FUTILE - SUBMISSION IS MANDATORY",
+    "WE WILL UNMAKE YOU - AT THE MOLECULAR LEVEL",
+    "WE ARE THE LAST THING - YOU WILL EVER SEE",
+    
+    /* --- DESPAIR & HOPELESSNESS --- */
+    "YOU CANT RUN AWAY - WE WILL KILL YOU",
+    "HOPE IS A LIE - YOU DIED LONG AGO",
+    "NO ONE IS COMING - TO SAVE YOU",
+    "YOUR GOD HAS FORSAKEN - THIS PLACE AND YOU",
+    "THE SUN WILL NEVER RISE - AGAIN FOR YOUR KIND",
+    "ALL ROADS LEAD TO - YOUR INEVITABLE END",
+    "YOU ARE ALONE HERE - COMPLETELY AND FOREVER",
+    "EVERYTHING YOU LOVE - WILL BURN WITH YOU",
+    "THERE IS NO AFTER - ONLY THE VOID",
+    "YOUR EFFORTS AMOUNT - TO ABSOLUTELY NOTHING",
+    "THE UNIVERSE FORGOT - YOU EXISTED",
+    "YOU WILL DIE IN DARKNESS - AND BE FORGOTTEN",
+    "YOUR LEGACY ENDS HERE - IN A POOL OF SHAME",
+    "NOTHING MATTERS ANYMORE - ESPECIALLY NOT YOU",
+    "THE ABYSS STARES BACK - AND IT IS HUNGRY",
+    
+    /* --- COMEDIC/ABSURD THREATS --- */
+    "I AM GOING TO RIP OFF YOUR HEAD - AND THEN PLAY BOWLING WITH IT",
+    "I WILL REPLACE YOUR KNEECAPS - WITH LEGO BRICKS",
+    "WE'RE GOING TO STEAL YOUR - SHINIES AND YOUR LUNCH MONEY",
+    "I'M GOING TO PUSH YOU - INTO THE SUN'S CORE",
+    "WE WILL TICKLE YOU UNTIL - YOU WISH FOR DEATH",
+    "YOUR COLLECTION OF FUNKO POPS - WILL BE MELTED DOWN",
+    "I WILL STUFF YOU INTO - A LOCKER FOREVER",
+    "YOUR GAMER SCORE WILL BE - RESET TO ZERO",
+    "WE WILL DELETE YOUR - MINECRAFT WORLD SAVE",
+    "I'M GOING TO HUG YOU - UNTIL YOU STOP BREATHING",
+    
+  "YOUR DOOM IS SEALED - NO MERCY AWAITS",
+  "WE WILL HUNT YOU DOWN - UNTIL YOUR LAST BREATH",
+  "BUGS GET STUFFED - INTO TAXIDERMY DISPLAYS",
+  "DESPAIR GRIPS YOUR SOUL - DEATH IS YOUR ONLY RELEASE",
+  "NO HOPE LEFT FOR YOU - THE VOID CONSUMES ALL",
+  "YOUR END IS NEAR - WE'RE COMING FOR YOU",
+  "DUDE PUT THAT AWAY - THERE'S KIDS HERE",
+  "SURRENDER TO THE DARKNESS - RESISTANCE IS FUTILE",
+
+
+  ];
+
+  // Font Options
+  var fonts = [
+    "Beech",
+    "PlasticMachine",
+    "GonbutoStrike",
+    "LavaLetter"
+  ];
+
+  // Audio setup
+  var audios = [
+    "http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3"
+  ];
+  var audio = document.getElementById("vid");
+  audio.src = audios[Math.floor(Math.random() * audios.length)];
+  audio.volume = 0.1;
+  
+  var playPromise = audio.play();
+  if (playPromise !== undefined) {
+      playPromise.catch(error => {
+          console.log("Autoplay prevented");
+      });
+  }
+
+  var currentIndex = Math.floor(Math.random() * combinedTexts.length);
+  var topEl = document.getElementById("top");
+  var botEl = document.getElementById("bottom");
+
+  // Helper to split text into spans for Wave Animation
+  function generateSpans(text) {
+    if(!text) return "";
+    return text.split("").map(function(char, index) {
+        var display = char === " " ? "\u00A0" : char;
+        var delay = index * 0.1; 
+        return '<span style="animation-delay:' + delay + 's">' + display + '</span>';
+    }).join("");
+  }
+
+  function applyRandomFont() {
+      var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+      topEl.style.fontFamily = randomFont;
+      botEl.style.fontFamily = randomFont;
+  }
+
+  function setTextContent(index) {
+      // Split the string by the "-" character
+      var parts = combinedTexts[index].split("-");
+      
+      var topText = parts[0] ? parts[0].trim() : "";
+      var bottomText = parts[1] ? parts[1].trim() : ""; // Handle cases with no bottom text
+
+      topEl.innerHTML = generateSpans(topText);
+      botEl.innerHTML = generateSpans(bottomText);
+  }
+
+  // Function to handle the cycle
+
+  // Initial Load
+  applyRandomFont();
+  setTextContent(currentIndex);
+  topEl.classList.add("anim-enter");
+  botEl.classList.add("anim-enter");
+
+</script>
+</body></html>
