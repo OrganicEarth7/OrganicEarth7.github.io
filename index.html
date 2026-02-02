@@ -98,15 +98,15 @@
 
 </style>
 
-</head><body><audio id="vid" autoplay="" loop="" style="display:none;" src="http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3">
-  <source src="http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3" type="audio/mpeg">
+</head><body><audio id="vid" autoplay="" loop="" style="display:none;">
+  <source type="audio/mpeg">
 </audio>
 
 <div class="container">
-  <img class="bg-anim" src="https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/stop_talking._youre_gonna_get_us_killed.png">
+  <img class="bg-anim" id="bgImage" src="">
 
-  <h1 class="top anim-enter" id="top" style="font-family: Irresponsible;"><span style="animation-delay:0s">Y</span><span style="animation-delay:0.1s">O</span><span style="animation-delay:0.2s">U</span><span style="animation-delay:0.30000000000000004s">R</span><span style="animation-delay:0.4s">&nbsp;</span><span style="animation-delay:0.5s">E</span><span style="animation-delay:0.6000000000000001s">N</span><span style="animation-delay:0.7000000000000001s">D</span><span style="animation-delay:0.8s">&nbsp;</span><span style="animation-delay:0.9s">I</span><span style="animation-delay:1s">S</span><span style="animation-delay:1.1s">&nbsp;</span><span style="animation-delay:1.2000000000000002s">N</span><span style="animation-delay:1.3s">E</span><span style="animation-delay:1.4000000000000001s">A</span><span style="animation-delay:1.5s">R</span></h1>
-  <h1 class="bottom anim-enter" id="bottom" style="font-family: PlasticMachine;"><span style="animation-delay:0s">W</span><span style="animation-delay:0.1s">E</span><span style="animation-delay:0.2s">'</span><span style="animation-delay:0.30000000000000004s">R</span><span style="animation-delay:0.4s">E</span><span style="animation-delay:0.5s">&nbsp;</span><span style="animation-delay:0.6000000000000001s">C</span><span style="animation-delay:0.7000000000000001s">O</span><span style="animation-delay:0.8s">M</span><span style="animation-delay:0.9s">I</span><span style="animation-delay:1s">N</span><span style="animation-delay:1.1s">G</span><span style="animation-delay:1.2000000000000002s">&nbsp;</span><span style="animation-delay:1.3s">F</span><span style="animation-delay:1.4000000000000001s">O</span><span style="animation-delay:1.5s">R</span><span style="animation-delay:1.6s">&nbsp;</span><span style="animation-delay:1.7000000000000002s">Y</span><span style="animation-delay:1.8s">O</span><span style="animation-delay:1.9000000000000001s">U</span></h1>
+  <h1 class="top anim-enter" id="top" style="font-family: Irresponsible;"></h1>
+  <h1 class="bottom anim-enter" id="bottom" style="font-family: PlasticMachine;"></h1>
 </div>
 
 <script>
@@ -153,15 +153,36 @@
     /* --- COMEDIC/ABSURD THREATS --- */
     "I'M GOING TO PUSH YOU - INTO THE SUN'S CORE",
     "YOUR COLLECTION OF FUNKO POPS - WILL BE MELTED DOWN",
-  "YOUR DOOM IS SEALED - NO MERCY AWAITS",
-  "WE WILL HUNT YOU DOWN - UNTIL YOUR LAST BREATH",
-  "BUGS GET STUFFED - INTO TAXIDERMY DISPLAYS",
-  "DESPAIR GRIPS YOUR SOUL - DEATH IS YOUR ONLY RELEASE",
-  "YOUR END IS NEAR - WE'RE COMING FOR YOU",
-  "DUDE PUT THAT AWAY - THERE'S KIDS HERE",
-  "SURRENDER TO THE DARKNESS - RESISTANCE IS FUTILE",
+    "YOUR DOOM IS SEALED - NO MERCY AWAITS",
+    "WE WILL HUNT YOU DOWN - UNTIL YOUR LAST BREATH",
+    "BUGS GET STUFFED - INTO TAXIDERMY DISPLAYS",
+    "DESPAIR GRIPS YOUR SOUL - DEATH IS YOUR ONLY RELEASE",
+    "YOUR END IS NEAR - WE'RE COMING FOR YOU",
+    "DUDE PUT THAT AWAY - THERE'S KIDS HERE",
+    "SURRENDER TO THE DARKNESS - RESISTANCE IS FUTILE",
+  ];
 
-
+  /* 
+     Format: 
+     {
+       background: "URL_TO_IMAGE",
+       music: "URL_TO_AUDIO"
+     },
+  */
+  
+  var bgMusicPairs = [
+    {
+      background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/stop_talking._youre_gonna_get_us_killed.png",
+      music: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/bugrelic.mp3"
+    },
+    {
+      background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/doom24.png",
+      music: "http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3"
+    },
+    {
+      background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/loading2.png",
+      music: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/themine.mp3"
+    },
   ];
 
   // Font Options
@@ -169,12 +190,16 @@
     "WrongTime"
   ];
 
+  // Select random background/music pair
+  var randomPair = bgMusicPairs[Math.floor(Math.random() * bgMusicPairs.length)];
+  
+  // Set background image
+  var bgImage = document.getElementById("bgImage");
+  bgImage.src = randomPair.background;
+  
   // Audio setup
-  var audios = [
-    "http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3"
-  ];
   var audio = document.getElementById("vid");
-  audio.src = audios[Math.floor(Math.random() * audios.length)];
+  audio.src = randomPair.music;
   audio.volume = 0.1;
   
   var playPromise = audio.play();
