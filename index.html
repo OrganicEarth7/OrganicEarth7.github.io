@@ -119,6 +119,18 @@
      
      Example: "HELLO WORLD - THIS IS A TEST",
   */
+    var rareEvents = [
+    {
+      chance: 0.1,
+      background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/whereishe.png",
+      music: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/whereishe.wav",
+      topText: "WHERE IS HE",
+      bottomText: ""
+    },
+ 
+   
+ 
+  ];
   
   var combinedTexts = [
     "THIS CARCASS IS MY ARENA. - FACE ME OR DIE.",
@@ -150,6 +162,7 @@
     "YOUR LEGACY ENDS HERE - IN A POOL OF SHAME",
     "NOTHING MATTERS ANYMORE - ESPECIALLY NOT YOU",
     "THE BARON IS HERE - THE END IS COMING",
+    "SOMETHING WRITHES - UNDERNEATH",
     
     /* --- COMEDIC/ABSURD THREATS --- */
     "I'M GOING TO PUSH YOU - INTO THE SUN'S CORE",
@@ -161,6 +174,8 @@
     "YOUR END IS NEAR - WE'RE COMING FOR YOU",
     "DUDE PUT THAT AWAY - THERE'S KIDS HERE",
     "SURRENDER TO THE DARKNESS - RESISTANCE IS FUTILE",
+    "S.T.A.R.S - ",
+    "hi - ",
   ];
 
   /* 
@@ -196,22 +211,34 @@
   ];
 
   // Select random background/music pair
-  var randomPair = bgMusicPairs[Math.floor(Math.random() * bgMusicPairs.length)];
-  
-  // Set background image
+  var chosenRare = null;
+ 
+  for (var i = 0; i < rareEvents.length; i++) {
+    if (Math.random() < rareEvents[i].chance) {
+      chosenRare = rareEvents[i];
+      break; 
+    }
+  }
+ 
   var bgImage = document.getElementById("bgImage");
-  bgImage.src = randomPair.background;
-  
-  // Audio setup
-  var audio = document.getElementById("vid");
-  audio.src = randomPair.music;
+  var audio   = document.getElementById("vid");
+ 
+  if (chosenRare) {
+    bgImage.src = chosenRare.background;
+    audio.src   = chosenRare.music;
+  } else {
+    var randomPair = bgMusicPairs[Math.floor(Math.random() * bgMusicPairs.length)];
+    bgImage.src = randomPair.background;
+    audio.src   = randomPair.music;
+  }
+ 
   audio.volume = 0.1;
-  
+ 
   var playPromise = audio.play();
   if (playPromise !== undefined) {
-      playPromise.catch(error => {
-          console.log("Autoplay prevented");
-      });
+    playPromise.catch(function(error) {
+      console.log("Autoplay prevented");
+    });
   }
 
   var currentIndex = Math.floor(Math.random() * combinedTexts.length);
@@ -235,12 +262,22 @@
   }
 
   function setTextContent(index) {
-      // Split the string by the "-" character
-      var parts = combinedTexts[index].split("-");
-      
-      var topText = parts[0] ? parts[0].trim() : "";
-      var bottomText = parts[1] ? parts[1].trim() : ""; // Handle cases with no bottom text
-
+     
+        if (chosenRare) {
+    // Use the saints fixed caption
+    var topText    = "WHERE IS HE";
+    var bottomText = "";
+    topEl.innerHTML = generateSpans(topText);
+    botEl.innerHTML = generateSpans(bottomText);
+  } else {
+    // Pick a random caption from the normal pool
+    var currentIndex = Math.floor(Math.random() * combinedTexts.length);
+    var parts      = combinedTexts[currentIndex].split("-");
+    var topText    = parts[0] ? parts[0].trim() : "";
+    var bottomText = parts[1] ? parts[1].trim() : "";
+    topEl.innerHTML = generateSpans(topText);
+    botEl.innerHTML = generateSpans(bottomText);
+  }
       topEl.innerHTML = generateSpans(topText);
       botEl.innerHTML = generateSpans(bottomText);
   }
