@@ -1,25 +1,18 @@
 <html><head><style>
   /* --- FONT DEFINITIONS --- */
   
-  /* 1. The one we started with */
   @font-face {
     font-family: "Irresponsible";
     src: url("raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Irresponsible Direction.ttf") format("truetype");
   }
-
-  /* 2. Plastic Machine */
   @font-face {
     font-family: "Baron";
     src: url("http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Baron%20Kuffner.otf") format("opentype");
   }
-
-  /* 3. Gonbuto Strike */
   @font-face {
     font-family: "WrongTime";
     src: url("https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Wrong time%2C right place.ttf") format("truetype");
   }
-
-  /* 4. Lava Letter */
   @font-face {
     font-family: "Misproject";
     src: url("http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/MISPROJE.TTF") format("truetype");
@@ -38,88 +31,112 @@
     height: 100vh;
   }
 
-  /* Background Image Animation */
   img.bg-anim {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: cover;
-}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+  }
 
   h1 {
     position: absolute;
-    /* Default font, will be overridden by JS */
-    font-family: "Irresponsible"; 
-    font-size: 50px;
+    font-family: "Irresponsible";
+    font-size: 75px;
     white-space: nowrap;
-    transform-origin: center bottom; 
-    
-    /* GRADIENT TEXT SETUP */
+    transform-origin: center bottom;
     background: linear-gradient(to top, #500000 0%, #ff0000 100%, #ff99cc 0%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-
-    /* HARD OUTLINE */
-    filter: 
-        drop-shadow(2px 0px 0px black) 
-        drop-shadow(-2px 0px 0px black)
-        drop-shadow(0px 2px 0px black) 
-        drop-shadow(0px -2px 0px black);
+    filter:
+      drop-shadow(2px 0px 0px black)
+      drop-shadow(-2px 0px 0px black)
+      drop-shadow(0px 2px 0px black)
+      drop-shadow(0px -2px 0px black);
   }
 
   h1 span {
-  display: inline-block;
-  background: inherit;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+    display: inline-block;
+    background: inherit;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-.top {
-  position: absolute;
-  top: 45%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  .top {
+    position: absolute;
+    top: 75%;
+    left: 23%;
+    transform: translate(-50%, -50%);
+  }
 
-.bottom {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+  .bottom {
+    position: absolute;
+    top: 85%;
+    left: 23%;
+    transform: translate(-50%, -50%);
+  }
 
+  /* ===================== SERVER BADGE ===================== */
+  #server-badge {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+  }
+
+  #server-badge img {
+    height: 175px;
+    width: 175px;
+    object-fit: contain;
+  }
+
+  #server-badge-name {
+    font-family: "WrongTime", sans-serif;
+    font-size: 128px;
+    letter-spacing: 3px;
+    white-space: nowrap;
+    background: linear-gradient(to top, #500000 0%, #ff0000 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter:
+      drop-shadow(1px 0px 0px black)
+      drop-shadow(-1px 0px 0px black)
+      drop-shadow(0px 1px 0px black)
+      drop-shadow(0px -1px 0px black);
+  }
 
 </style>
 
-</head><body><audio id="vid" autoplay="" loop="" style="display:none;">
+</head><body>
+<audio id="vid" autoplay="" loop="" style="display:none;">
   <source type="audio/mpeg">
 </audio>
 
 <div class="container">
   <img class="bg-anim" id="bgImage" src="">
 
+
+  <div id="server-badge">
+    <img src="https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/sycmotdtest.png" alt="Sycosuia logo">
+    <span id="server-badge-name">SYCOSUIA</span>
+  </div>
+
   <h1 class="top anim-enter" id="top" style="font-family: Irresponsible;"></h1>
   <h1 class="bottom anim-enter" id="bottom" style="font-family: PlasticMachine;"></h1>
 </div>
 
 <script>
-  /* 
-     --- INSTRUCTIONS FOR ADDING TEXT ---
-     Add your text strings to the 'combinedTexts' array below.
-     Use a hyphen "-" to separate the top line from the bottom line.
-     
-     Format: "TOP LINE TEXT - BOTTOM LINE TEXT",
-     
-     Example: "HELLO WORLD - THIS IS A TEST",
-  */
-    var rareEvents = [
+  var rareEvents = [
     {
       chance: 0.1,
       background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/thereheis.png",
@@ -127,40 +144,29 @@
       topText: "HE IS HERE",
       bottomText: ""
     },
- 
-   
- 
   ];
-  
+
   var combinedTexts = [
-    "THIS CARCASS IS MY ARENA. - FACE ME OR DIE.",
+    "THIS CARCASS IS MY ARENA. - SHOW ME A FIGHT.",
     "AT LORDS CONVERGING - IN THEIR PLACE",
     "WE HAVE WAITED FOR THIS MOMENT. - WE KNOW YOUR FATE",
-    "THERE IS NO ESCAPE. - THIS IS THE END FOR YOU.",
-    "INFECTED ROT PLAGUES YOUR LAND. - THIS IS THE END FOR YOU.",
+    "WE ARE FESTERING AND ANGRY - WE WANT A FIGHT.",
+    "INFECTED ROT PLAGUES YOUR LAND. - FIGHT IT OFF, WE KNOW YOU CAN.",
     "THE GROX WERE BABIES - SO IS THE BUG",
-    "YOUR BLOOD WILL PAINT - THESE WALLS SCARLET",
-    "WE HAVE ALREADY WON - YOU JUST DONT KNOW IT YET",
-    "CLOSE YOUR EYES - IT WILL BE OVER SOON",
+    "OUR BLOOD WILL PAINT - THESE WALLS SCARLET",
+    "OUR WAR LASTS FOREVER - JOIN US",
+    "YOU WILL WAKE UP EVERY TIME - CONTINUE THE FIGHT",
     "THEY ARE COMING FOR YOU - AND THEY ARE HUNGRY",
-    "RESISTANCE IS FUTILE - SUBMISSION IS MANDATORY",
-    "WE WILL UNMAKE YOU - AT THE MOLECULAR LEVEL",
-    "WE ARE THE LAST THING - YOU WILL EVER SEE",
+    "PSYCOPATHS PLAGUE THIS WORLD - RESISTANCE IS MANDATORY",
+    "WAR IS ETERNAL - THERE IS NO PEACE",
+    "FIGHT US - WE WANT TO SEE YOUR STRENGTH",
     "STREET_BLOX53 - ON YOUTUBE DOT COM",
-    
+
     /* --- DESPAIR & HOPELESSNESS --- */
-    "YOU CANT RUN AWAY - WE WILL KILL YOU",
-    "HOPE IS A LIE - YOU DIED LONG AGO",
-    "NO ONE IS COMING - TO SAVE YOU",
-    "YOUR GOD HAS FORSAKEN - THIS PLACE AND YOU",
-    "THE SUN WILL NEVER RISE - AGAIN FOR YOUR KIND",
-    "ALL ROADS LEAD TO - YOUR INEVITABLE END",
-    "YOU ARE ALONE HERE - COMPLETELY AND FOREVER",
-    "EVERYTHING YOU LOVE - WILL BURN WITH YOU",
-    "YOUR EFFORTS AMOUNT - TO ABSOLUTELY NOTHING",
-    "YOU WILL DIE IN DARKNESS - AND BE FORGOTTEN",
-    "YOUR LEGACY ENDS HERE - IN A POOL OF SHAME",
-    "NOTHING MATTERS ANYMORE - ESPECIALLY NOT YOU",
+    "DONT RUN AWAY - WE WANT TO SEE YOUR STRENGTH",
+    "NO ONE IS COMING TO SAVE YOU - FIGHT TO THE BITTER END",
+    "THE CARCASS CALLS FOR BLOOD - SACRIFICE EVERYONE YOU SEE",
+    "ALL ROADS LEAD TO - OUR ETERNAL WARFARE",
     "THE BARON IS HERE - THE END IS COMING",
     "SOMETHING WRITHES - UNDERNEATH",
     "THE GOD RIB - WRITHES IN THE SAND",
@@ -168,67 +174,58 @@
     "THE ILL WILLING STAR - SHINES FOR ITS RECLAIMER",
     "THE TWIN GOLDEN AGONIES - WAIL IN THE DISTANCE",
     "RETURN TO HIM - HIS SIXTH HORN",
-    
+
     /* --- COMEDIC/ABSURD THREATS --- */
     "I'M GOING TO PUSH YOU - INTO THE SUN'S CORE",
     "YOUR COLLECTION OF FUNKO POPS - WILL BE MELTED DOWN",
-    "YOUR DOOM IS SEALED - NO MERCY AWAITS",
+    "WE CAN FEEL YOUR POWER - SHOW US YOUR MIGHT",
     "WE WILL HUNT YOU DOWN - UNTIL YOUR LAST BREATH",
     "BUGS GET STUFFED - INTO TAXIDERMY DISPLAYS",
-    "DESPAIR GRIPS YOUR SOUL - DEATH IS YOUR ONLY RELEASE",
-    "YOUR END IS NEAR - WE'RE COMING FOR YOU",
+    "DEATH IS NOT THE END - WE WILL FIGHT FOREVER",
+    "A KILLZONE SPAWNED - GO GET IT DUDE",
     "DUDE PUT THAT AWAY - THERE'S KIDS HERE",
-    "SURRENDER TO THE DARKNESS - RESISTANCE IS FUTILE",
+    "THE DARKNESS IS A TRAP - RESIST ITS PULL",
     "S.T.A.R.S - ",
     "hi - ",
     "I JUST SHIT MYSELF - CAN YOU HELP ME",
   ];
 
-  /* 
-     Format: 
-     {
-       background: "URL_TO_IMAGE",
-       music: "URL_TO_AUDIO"
-     },
-  */
-  
   var bgMusicPairs = [
-    {
+/*  {
       background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/stop_talking._youre_gonna_get_us_killed.png",
       music: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/bugrelic.mp3"
     },
+*/
     {
       background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/sanidoomcredited.png",
       music: "http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/neverlookbackatbugs.mp3"
     },
-    {
+/*  {
       background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/loading2.png",
       music: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/themine.mp3"
     },
     {
-     background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/MAJOR_Turbulence.png",
-     music:"https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Slow-Crushed%20By%20Overwhelming%20Force(1).mp3"
+      background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/MAJOR_Turbulence.png",
+      music: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Slow-Crushed%20By%20Overwhelming%20Force(1).mp3"
     },
+*/
   ];
 
-  // Font Options
-  var fonts = [
-    "WrongTime"
-  ];
+  var fonts = ["WrongTime"];
 
-  // Select random background/music pair
+  // --- Rare event roll ---
   var chosenRare = null;
- 
   for (var i = 0; i < rareEvents.length; i++) {
     if (Math.random() < rareEvents[i].chance) {
       chosenRare = rareEvents[i];
-      break; 
+      break;
     }
   }
- 
+
+  // --- Background & music ---
   var bgImage = document.getElementById("bgImage");
   var audio   = document.getElementById("vid");
- 
+
   if (chosenRare) {
     bgImage.src = chosenRare.background;
     audio.src   = chosenRare.music;
@@ -237,62 +234,51 @@
     bgImage.src = randomPair.background;
     audio.src   = randomPair.music;
   }
- 
+
   audio.volume = 0.1;
- 
   var playPromise = audio.play();
   if (playPromise !== undefined) {
-    playPromise.catch(function(error) {
-      console.log("Autoplay prevented");
-    });
+    playPromise.catch(function(error) { console.log("Autoplay prevented"); });
   }
 
-  var currentIndex = Math.floor(Math.random() * combinedTexts.length);
+  // --- Captions ---
   var topEl = document.getElementById("top");
   var botEl = document.getElementById("bottom");
 
-  // Helper to split text into spans for Wave Animation
   function generateSpans(text) {
-    if(!text) return "";
+    if (!text) return "";
     return text.split("").map(function(char, index) {
-        var display = char === " " ? "\u00A0" : char;
-        var delay = index * 0.1; 
-        return '<span style="animation-delay:' + delay + 's">' + display + '</span>';
+      var display = char === " " ? "\u00A0" : char;
+      return '<span style="animation-delay:' + (index * 0.1) + 's">' + display + '</span>';
     }).join("");
   }
 
   function applyRandomFont() {
-      var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-      topEl.style.fontFamily = randomFont;
-      botEl.style.fontFamily = randomFont;
+    var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+    topEl.style.fontFamily = randomFont;
+    botEl.style.fontFamily = randomFont;
   }
 
-  function setTextContent(index) {
-     
-        if (chosenRare) {
-    // Use the saints fixed caption
-    var topText    = "HE IS HERE";
-    var bottomText = "";
+  function setTextContent() {
+    var topText, bottomText;
+
+    if (chosenRare) {
+      topText    = chosenRare.topText;
+      bottomText = chosenRare.bottomText;
+    } else {
+      var currentIndex = Math.floor(Math.random() * combinedTexts.length);
+      var parts  = combinedTexts[currentIndex].split("-");
+      topText    = parts[0] ? parts[0].trim() : "";
+      bottomText = parts[1] ? parts[1].trim() : "";
+    }
+
     topEl.innerHTML = generateSpans(topText);
     botEl.innerHTML = generateSpans(bottomText);
-  } else {
-    // Pick a random caption from the normal pool
-    var currentIndex = Math.floor(Math.random() * combinedTexts.length);
-    var parts      = combinedTexts[currentIndex].split("-");
-    var topText    = parts[0] ? parts[0].trim() : "";
-    var bottomText = parts[1] ? parts[1].trim() : "";
-    topEl.innerHTML = generateSpans(topText);
-    botEl.innerHTML = generateSpans(bottomText);
-  }
-      topEl.innerHTML = generateSpans(topText);
-      botEl.innerHTML = generateSpans(bottomText);
   }
 
-  // Function to handle the cycle
-
-  // Initial Load
+  // --- Initial load ---
   applyRandomFont();
-  setTextContent(currentIndex);
+  setTextContent();
   topEl.classList.add("anim-enter");
   botEl.classList.add("anim-enter");
 
