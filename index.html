@@ -31,7 +31,7 @@
     height: 100vh;
   }
 
-  img.bg-anim {
+  .bg-layer {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -41,7 +41,13 @@
     width: auto;
     height: auto;
     object-fit: cover;
+    transition: opacity 2s ease-in-out;
   }
+ 
+  #bgBack  { z-index: 0; opacity: 1; }
+  #bgFront { z-index: 1; opacity: 0; }
+ 
+
 
   h1 {
     position: absolute;
@@ -73,6 +79,7 @@
     top: 75%;
     left: 23%;
     transform: translate(-50%, -50%);
+    z-index: 2;
   }
 
   .bottom {
@@ -80,9 +87,9 @@
     top: 85%;
     left: 23%;
     transform: translate(-50%, -50%);
+    z-index: 2;
   }
 
-  /* ===================== SERVER BADGE ===================== */
   #server-badge {
     position: absolute;
     top: 48px;
@@ -90,6 +97,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    z-index: 2;
 
   }
 
@@ -97,6 +105,7 @@
     height: 175px;
     width: 175px;
     object-fit: contain;
+    z-index: 2;
   }
 
   #server-badge-name {
@@ -114,6 +123,26 @@
       drop-shadow(0px 1px 0px black)
       drop-shadow(0px -1px 0px black);
   }
+  
+#mapname-display {
+  position: absolute;
+  top: 225px;
+  right: 48px;
+  text-align: right;
+  z-index: 2;
+  font-family: "WrongTime", sans-serif;
+  font-size: 72px;
+  white-space: nowrap;
+  background: linear-gradient(to top, #500000 0%, #ff0000 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(1px 0px 0px black)
+    drop-shadow(-1px 0px 0px black)
+    drop-shadow(0px 1px 0px black)
+    drop-shadow(0px -1px 0px black);
+}
 
 </style>
 
@@ -123,8 +152,12 @@
 </audio>
 
 <div class="container">
-  <img class="bg-anim" id="bgImage" src="">
 
+    <img class="bg-layer" id="bgBack"  src="">
+  <img class="bg-layer" id="bgFront" src="">
+
+  
+<div id="mapname-display"></div>
 
   <div id="server-badge">
     <img src="https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/sycmotdtest.png" alt="Sycosuia logo">
@@ -138,7 +171,7 @@
 <script>
   var rareEvents = [
     {
-      chance: 0.1,
+      chance: 0.066,
       background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/thereheis.png",
       music: "",
       topText: "HE IS HERE",
@@ -190,6 +223,36 @@
     "I JUST SHIT MYSELF - CAN YOU HELP ME",
   ];
 
+  var slideshowImages = [
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/ghoulish.JPG",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/fortnite.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/ruinous_damage.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/loadingpic1.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/sanidoomcredited.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/novenkachaos.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/originsflames.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/atomicwarfare.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/grandhumidrooks.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/morenovenka.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/redskies.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/pumkin.JPG",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/redskies.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/unsyc.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/bigcitybattle2.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/theresmanypeeled.png",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/ohmygod.JPG",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/fogman.JPG",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/apocalypse.JPG",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/highwayofdeath.JPG",
+    "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/stop_talking._youre_gonna_get_us_killed.png",
+  ];
+ 
+
+  var firstDelay   = 5000;  
+  var cycleDelay   = 7000;  
+  var fadeDuration = 2000;  
+ 
+
   var bgMusicPairs = [
 /*  {
       background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/stop_talking._youre_gonna_get_us_killed.png",
@@ -223,24 +286,61 @@
   }
 
   // --- Background & music ---
-  var bgImage = document.getElementById("bgImage");
+  var bgBack  = document.getElementById("bgBack");
+  var bgFront = document.getElementById("bgFront");
   var audio   = document.getElementById("vid");
 
+  var firstBg;
   if (chosenRare) {
-    bgImage.src = chosenRare.background;
-    audio.src   = chosenRare.music;
+    firstBg   = chosenRare.background;
+    audio.src = chosenRare.music;
   } else {
     var randomPair = bgMusicPairs[Math.floor(Math.random() * bgMusicPairs.length)];
-    bgImage.src = randomPair.background;
-    audio.src   = randomPair.music;
+    firstBg   = randomPair.background;
+    audio.src = randomPair.music;
   }
 
+  bgBack.src  = firstBg;
+  bgFront.src = firstBg;
+ 
   audio.volume = 0.1;
   var playPromise = audio.play();
   if (playPromise !== undefined) {
     playPromise.catch(function(error) { console.log("Autoplay prevented"); });
   }
+ 
 
+  var lastSlide = firstBg;
+ 
+  function pickNextSlide() {
+    var pool = slideshowImages.filter(function(url) { return url !== lastSlide; });
+    if (pool.length === 0) pool = slideshowImages; 
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+ 
+  function crossfadeTo(nextUrl) {
+    bgFront.src    = nextUrl;
+    bgFront.style.opacity = "0";
+ 
+    bgFront.onload = function() {
+      bgFront.style.opacity = "1";
+ 
+      setTimeout(function() {
+        bgBack.src            = nextUrl;
+        bgFront.style.opacity = "0";
+        lastSlide             = nextUrl;
+      }, fadeDuration);
+    };
+  }
+ 
+  function startSlideshow() {
+    setInterval(function() {
+      crossfadeTo(pickNextSlide());
+    }, cycleDelay);
+  }
+
+  setTimeout(startSlideshow, firstDelay);
+ 
   // --- Captions ---
   var topEl = document.getElementById("top");
   var botEl = document.getElementById("bottom");
@@ -281,6 +381,31 @@
   setTextContent();
   topEl.classList.add("anim-enter");
   botEl.classList.add("anim-enter");
+  
+function setMapName(name) {
+  var el    = document.getElementById("mapname-display");
+  var badge = document.getElementById("server-badge");
+
+  el.innerText = name;
+  el.style.fontSize = "72px";
+
+  var maxWidth = badge.offsetWidth;
+
+  while (el.scrollWidth > maxWidth && parseInt(el.style.fontSize) > 20) {
+    el.style.fontSize = (parseInt(el.style.fontSize) - 1) + "px";
+  }
+}
+
+setMapName("gm_ITSBROKENHELP");
+
+function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, lang, gamemodeNice) {
+  setMapName(mapname);
+}
+
+  function DownloadingFile(file) {}
+
+  function SetStatusChanged(status) {}
+
 
 </script>
 </body></html>
