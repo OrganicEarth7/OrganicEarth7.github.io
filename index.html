@@ -171,11 +171,18 @@
 <script>
   var rareEvents = [
     {
-      chance: 0.066,
+      chance: 0.0,
       background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/thereheis.png",
       music: "",
       topText: "HE IS HERE",
       bottomText: ""
+    },
+      {
+      chance: 1,
+      background: "https://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/skeleton army.jpg",
+      music: "http://raw.githubusercontent.com/OrganicEarth7/OrganicEarth7.github.io/main/Cante de los Muertos.mp3",
+      topText: "THE SKELETONS ARE HERE",
+      bottomText: "WE ARE SO FUCKED"
     },
   ];
 
@@ -248,7 +255,7 @@
   ];
  
 
-  var firstDelay   = 5000;  
+  var firstDelay   = 16000;  
   var cycleDelay   = 7000;  
   var fadeDuration = 2000;  
  
@@ -303,7 +310,7 @@
   bgBack.src  = firstBg;
   bgFront.src = firstBg;
  
-  audio.volume = 0.1;
+  audio.volume = 0.3;
   var playPromise = audio.play();
   if (playPromise !== undefined) {
     playPromise.catch(function(error) { console.log("Autoplay prevented"); });
